@@ -575,37 +575,44 @@
       case 'calendar':
         var cc = getCanChi(currentLunarDate),
             holiday = getHolodayString( today.getDate(), (today.getMonth()+1), currentLunarDate.day, currentLunarDate.month );
+        var gioHoangDao = getGioHoangDao(currentLunarDate.jd).split(',');
+        var gioHoangDaoHtml = '<td class="calendar-hoangdao-row" colspan="2"><table class="gio-hoang-dao-table"><tr>';
+        var maxGioHD = gioHoangDao.length;
+        for (i = 0; i < maxGioHD; i++) {
+          gioHoangDaoHtml += '<td>'+gioHoangDao[i]+'</td>';
+        }
+        gioHoangDaoHtml +=  '</tr></table></td>';
         res += '<tr>\n';
         res += '  <td colspan="7">\n';
         res += '    <table class="calendar" border="0" cellpadding="4" cellspacing="0" width="100%">\n';
         res += '      <tbody>\n';
         res += '        <tr>\n';
-        res += '          <td colspan="2" class="calendar-month">Tháng '+(today.getMonth()+1)+' Năm '+today.getFullYear()+'</td>\n';
+        res += '          <td colspan="2" class="calendar-month">Lịch Tháng '+(today.getMonth()+1)+' Năm '+today.getFullYear()+'</td>\n';
         res += '        </tr>\n';
         res += '        <tr>\n';
-        res += '          <td colspan="2" class="calendar-day">\n';
+        res += '          <td class="calendar-header-left">Lịch Dương</td>\n';
+        res += '          <td class="calendar-header-right">Lịch Âm</td>\n';
+        res += '        </tr>\n';
+        res += '        <tr>\n';
+        res += '          <td width="50%" class="calendar-b-left calendar-day" valign="top">\n';
+        res += '            <span class="calendar-month small-title">Tháng '+(today.getMonth()+1)+' Năm '+today.getFullYear()+'</span><br>\n';
         res += '            <span class="day-num">'+today.getDate()+'</span><br>\n';
-        res += '            <span class="day-tuan">'+TUAN[(currentLunarDate.jd + 1) % 7]+'</span>\n';
+        res += '            <span class="day-tuan small-title">'+TUAN[(currentLunarDate.jd + 1) % 7]+'</span>\n';
         res += '          </td>\n';
-        res += '        </tr>\n';
-        res += '        <tr>\n';
-        res += '          <td width="50%" class="calendar-b-left" valign="top">\n';
-        res += '            <span class="lunar-month-name">Tháng '+THANG[currentLunarDate.month-1]+'</span><br>\n';
+        res += '          <td width="50%" class="calendar-b-right calendar-day" valign="top">\n';
+        res += '            <span class="lunar-month-name small-title">Tháng '+THANG[currentLunarDate.month-1]+'</span><br>\n';
         res += '            <span class="lunar-day-num">'+currentLunarDate.day+'</span><br>\n';
-        res += '            <span class="lunar-year-name"><strong>'+cc[2]+'</strong></span>\n';
-        res += '          </td>\n';
-        res += '          <td width="50%" class="calendar-b-right" valign="top">\n';
-        res += '            <span>Ngày <strong>'+cc[0]+'</strong></span><br>\n';
-        res += '            <span>Tháng <strong>'+cc[1]+'</strong></span><br>\n';
-        res += '            <span>Giờ đầu <strong>'+(getCanHour0(currentLunarDate.jd)+' '+CHI[0])+'</strong></span><br>\n';
-        res += '            <span>Tiết <strong>'+TIETKHI[getSunLongitude(currentLunarDate.jd + 1, 7.0)]+'</strong></span><br>\n';
+        res += '            <span class="lunar-year-name small-title"><strong>'+ 'Năm ' + cc[2]+'</strong></span><br>\n';
+        res += '            <span>Ngày: <strong>'+cc[0]+'</strong>, Tháng: <strong>'+cc[1]+'</strong></span><br>\n';
+        res += '            <span>Giờ đầu: <strong>'+(getCanHour0(currentLunarDate.jd)+' '+CHI[0])+'</strong>, Tiết: <strong>'+TIETKHI[getSunLongitude(currentLunarDate.jd + 1, 7.0)]+'</strong></span><br>\n';
         res += '            <span>PL: <strong>'+getPhatLich()+'</strong></span>\n';
         res += '          </td>\n';
         res += '        </tr>\n';
         res += '        <tr class="calendar-holiday">'+(holiday!='' ? '<td colspan="2">'+holiday+'</td>' : '')+'</tr>\n';
-        res += '        <tr>\n';
-        res += '          <td colspan="2" class="calendar-hoangdao">Giờ hoàng đạo: '+getGioHoangDao(currentLunarDate.jd)+'</td>\n';
-        res += '        </tr>\n';
+        res += '        <tr class="calendar-hoangdao-row">\n';
+        res += '          <td colspan="2" class="calendar-hoangdao-label">Giờ hoàng đạo</td>\n';
+        res += '        </tr>\n'
+        res += '        <tr class="calendar-hoangdao-row gio-hoang-dao-block">'+gioHoangDaoHtml+'</tr>';
         res += '      </tbody>\n';
         res += '    </table>\n';
         res += '  </td>\n';
@@ -748,15 +755,22 @@
           $this.find('.calendar .calendar-month').html('Tháng '+smonth+' Năm '+syear);
           $this.find('.calendar .calendar-day .day-num').html(sday);
           $this.find('.calendar .calendar-day .day-tuan').html(TUAN[(jd + 1) % 7]);
-          $this.find('.calendar .lunar-day-num').html(dd);
-          $this.find('.calendar .lunar-month-name').html('Tháng '+THANG[mm-1]+(leap == 1 ? ' (N)' : ''));
-          $this.find('.calendar .lunar-year-name').html('<strong>'+cc[2]+'</strong>');
           $this.find('.calendar .calendar-holiday').html((holiday!='' ? '<td colspan="2">'+holiday+'</td>' : ''));
-          $this.find('.calendar .calendar-hoangdao').html('Giờ hoàng đạo: '+getGioHoangDao(jd));
-          s += '<span>Ngày <strong>'+cc[0]+'</strong></span><br>\n';
-          s += '<span>Tháng <strong>'+cc[1]+'</strong></span><br>\n';
-          s += '<span>Giờ đầu <strong>'+(getCanHour0(jd)+' '+CHI[0])+'</strong></span><br>\n';
-          s += '<span>Tiết <strong>'+TIETKHI[getSunLongitude(jd + 1, 7.0)]+'</strong></span><br>';
+          var gioHoangDao = getGioHoangDao(jd).split(',');
+          var gioHoangDaoHtml = '<td class="calendar-hoangdao-row" colspan="2"><table class="gio-hoang-dao-table"><tr>';
+          var maxGioHD = gioHoangDao.length;
+          for (i = 0; i < maxGioHD; i++) {
+            gioHoangDaoHtml += '<td>'+gioHoangDao[i]+'</td>';
+          }
+          gioHoangDaoHtml +=  '</tr></table></td>';
+          $this.find('.calendar .gio-hoang-dao-block').html(gioHoangDaoHtml);
+          var lunarMonthName = THANG[mm-1]+(leap == 1 ? ' (N)' : '');
+          var lunarYearName = '<strong>'+cc[2]+'</strong>';
+          s += '<span class="lunar-month-name small-title">Tháng '+lunarMonthName+'</span><br>\n';
+          s += '<span class="lunar-day-num">'+dd+'</span><br>\n';
+          s += '<span class="lunar-year-name small-title"><strong>'+ 'Năm ' + lunarYearName +'</strong></span><br>\n';
+          s += '<span>Ngày: <strong>'+cc[0]+'</strong>, Tháng: <strong>'+cc[1]+'</strong></span><br>\n';
+          s += '<span>Giờ đầu: <strong>'+(getCanHour0(jd)+' '+CHI[0])+'</strong>, Tiết: <strong>'+TIETKHI[getSunLongitude(jd + 1, 7.0)]+'</strong></span><br>\n';
           s += '<span>PL: <strong>'+getPhatLich(dd, mm, yy)+'</strong></span>\n';
           $this.find('.calendar .calendar-b-right').html(s);
           break;

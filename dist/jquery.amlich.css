@@ -84,3 +84,92 @@
 .amlich .t2t6 { text-align: left; color: #5a5c5b; font-weight: bold; }
 .amlich .t7 { font-weight: bold; text-align: left; color: blue; }
 .amlich .cn { font-weight: bold; text-align: left; color: red; }
+
+/* Custom Styles */
+.amlich td.calendar-month {
+  padding: 10px;
+  font-size: 16px !important;
+  font-weight: bold;
+  height: 30px;
+  background-color: #027353 !important;
+}
+td.calendar-header-left, td.calendar-header-right {
+  height: 26px;
+  background-color: #EAFFEF;
+  font-size: 14px;
+  text-align: center;
+  color: crimson;
+  line-height: 24px;
+}
+.small-title {
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: bold;
+  color: #333;
+  background-color: transparent !important;
+  text-shadow: unset;
+}
+.navi-l , .tenthang, .navi-r {
+  background-color: #027353 !important;
+  height: 30px;
+  font-size: 15px !important;
+}
+.amlich .calendar-day .day-num {
+  font-size: 80px !important;
+  line-height: 80px;
+  color: #FF0000 !important;
+  text-shadow: 1px 1px 1px #FFF;
+}
+.lunar-day-num {
+  color: #213f7e !important;
+  padding: 10px;
+  display: block;
+}
+.calendar-day {
+  background-color: whitesmoke !important;
+  padding: 20px !important;
+}
+.calendar-b-right {
+  font-weight: normal !important;
+  font-size: 14px !important;
+}
+.calendar-hoangdao {
+  background-color: #ffffcc !important;
+  font-size: 14px !important;
+  line-height: 14px;
+  padding: 10px !important;
+}
+.gio-hoang-dao-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #FFD586;
+  background: #d6bc80;
+  margin-bottom: 10px;
+}
+.gio-hoang-dao-table tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+.calendar-hoangdao-row {
+  padding: 0 !important;
+}
+.calendar-hoangdao-label {
+  height: 50px;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: bold;
+  text-align: center;
+  background:#ffffcc !important;
+  padding: 0 !important;
+}
+.gio-hoang-dao-table td {
+  background:#ffffcc !important;
+  border: 1px solid #FFD586;
+  line-height: 24px;
+  color: #333;
+  font-size: 14px;
+  padding: 5px;
+  text-align: center;
+  height: 30px;
+}
