@@ -1,4 +1,4 @@
-jQuery.AmLich (Âm lịch Việt Nam)
+Lịch vạn niên
 ======
 **jQuery.AmLich** là một jQuery plugin được viết lại dựa trên mã nguồn của Hồ Ngọc Đức ([http://www.informatik.uni-leipzig.de/~duc/amlich/](http://www.informatik.uni-leipzig.de/~duc/amlich/)). Cách sử dụng:
 
@@ -21,15 +21,5 @@ $(element).amLich({
  * CÁC NGÀY LỄ ÂM VÀ DƯƠNG LỊCH CỦA VIỆT NAM
 
 ## Ảnh chụp
- ![Calendar](./lich-van-nien.png)
+ ![Calendar](examples/lich-van-nien.png)
 
-## Demo
- * [Calendar](http://ichuot.github.io/data/jquery-amlich-examples/calendar.html)
- * [Month](http://ichuot.github.io/data/jquery-amlich-examples/month.html)
- * [Year](http://ichuot.github.io/data/jquery-amlich-examples/year.html)
- * [Text](http://ichuot.github.io/data/jquery-amlich-examples/text.html)
-
-## Liên hệ
- * Ngô Minh Tuấn
- * eMail: ichuot@gmail.com
- * Facebook: [fb.com/ichuot](https://fb.com/ichuot)
